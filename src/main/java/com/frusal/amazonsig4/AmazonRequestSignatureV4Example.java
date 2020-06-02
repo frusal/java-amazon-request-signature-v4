@@ -10,6 +10,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Copyright 2020 Alex Vasiliev, licensed under the Apache 2.0 license: https://opensource.org/licenses/Apache-2.0
+ */
 public class AmazonRequestSignatureV4Example {
 
     public static void main(String[] args) throws Exception {
