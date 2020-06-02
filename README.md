@@ -21,7 +21,7 @@ It is a single java file utility class implementation. No other then java core c
 
 For now, I would suggest you just copy its content straight into your source code, if there will be any demand, I might publish it on [maven central].
 
-Have a look at  "Main" class above as an example of how you can use it with core java to make a real request.
+Have a look at  "Example" class above as an example of how you can use it with core java to make a real request.
 
 Not sure if you can run it on Android. It might have some dependencies on OpenJDK which Android is missing.
 
