@@ -27,6 +27,7 @@ public class AmazonRequestSignatureV4Example {
         connection.setRequestMethod("POST");
         System.out.println(connection.getRequestMethod() + " " + url);
 
+        // https://docs.aws.amazon.com/Route53/latest/APIReference/API_ChangeResourceRecordSets.html
         String body = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
                 "<ChangeResourceRecordSetsRequest xmlns=\"https://route53.amazonaws.com/doc/2013-04-01/\">\n" +
                 "<ChangeBatch>\n" +
