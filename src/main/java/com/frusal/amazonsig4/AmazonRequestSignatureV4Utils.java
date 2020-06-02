@@ -73,13 +73,13 @@ public class AmazonRequestSignatureV4Utils {
             String canonicalRequestHash = hex(sha256(canonicalRequestBody.getBytes(StandardCharsets.UTF_8)));
 
             // (2) https://docs.aws.amazon.com/general/latest/gr/sigv4-create-string-to-sign.html
-            List<String> strignToSignLines = new ArrayList<>();
-            strignToSignLines.add("AWS4-HMAC-SHA256");
-            strignToSignLines.add(isoDateTime);
+            List<String> stringToSignLines = new ArrayList<>();
+            stringToSignLines.add("AWS4-HMAC-SHA256");
+            stringToSignLines.add(isoDateTime);
             String credentialScope = isoJustDate + "/" + awsRegion + "/" + awsService + "/aws4_request";
-            strignToSignLines.add(credentialScope);
-            strignToSignLines.add(canonicalRequestHash);
-            String stringToSign = strignToSignLines.stream().collect(Collectors.joining("\n"));
+            stringToSignLines.add(credentialScope);
+            stringToSignLines.add(canonicalRequestHash);
+            String stringToSign = stringToSignLines.stream().collect(Collectors.joining("\n"));
 
             // (3) https://docs.aws.amazon.com/general/latest/gr/sigv4-calculate-signature.html
             byte[] kDate = hmac(("AWS4" + awsSecret).getBytes(StandardCharsets.UTF_8), isoJustDate);
