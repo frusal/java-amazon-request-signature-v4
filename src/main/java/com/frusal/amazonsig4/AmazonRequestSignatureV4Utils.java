@@ -2,9 +2,7 @@ package com.frusal.amazonsig4;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
@@ -64,9 +62,10 @@ public class AmazonRequestSignatureV4Utils {
             canonicalRequestLines.add(path);
             canonicalRequestLines.add(query);
             List<String> hashedHeaders = new ArrayList<>();
-            for (Entry<String, String> e : headers.entrySet()) {
-                hashedHeaders.add(e.getKey().toLowerCase());
-                canonicalRequestLines.add(e.getKey().toLowerCase() + ":" + normalizeSpaces(e.getValue().toString()));
+            List<String> headerKeysSorted = headers.keySet().stream().sorted(Comparator.comparing(e -> e.toLowerCase(Locale.US))).collect(Collectors.toList());
+            for (String key : headerKeysSorted) {
+                hashedHeaders.add(key.toLowerCase(Locale.US));
+                canonicalRequestLines.add(key.toLowerCase(Locale.US) + ":" + normalizeSpaces(headers.get(key)));
             }
             canonicalRequestLines.add(null); // new line required after headers
             String signedHeaders = hashedHeaders.stream().collect(Collectors.joining(";"));
